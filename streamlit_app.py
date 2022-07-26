@@ -51,8 +51,7 @@ my_cur.execute(
     "INSERT INTO fruit_load_list(FRUIT_NAME) VALUES ('"+
     add_my_fruit+
     "')")
-my_data_row = my_cur.fetchall()
-streamlit.header("The New table")
-streamlit.dataframe(my_data_row)
+# my_data_row2 = my_cur.fetchall()
+# streamlit.dataframe(my_data_row2)
 if add_my_fruit != "":
     streamlit.write('Thanks for adding ', add_my_fruit)
