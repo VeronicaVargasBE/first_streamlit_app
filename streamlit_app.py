@@ -2,6 +2,7 @@ import pandas as pd
 import requests
 import streamlit
 import snowflake.connector
+from urllib.error import URLError
 
 streamlit.title("My Mom's New Healthy Diner")
 streamlit.header('Breakfast Menu')
@@ -37,6 +38,9 @@ fruityvice_normalized = pd.json_normalize(fruityvice_response.json())
 # output it the screen as a table
 streamlit.dataframe(fruityvice_normalized)
 
+# STOP
+streamlit.stop()
+
 # Query with Snowflake
 my_cnx = snowflake.connector.connect(**streamlit.secrets["snowflake"])
 my_cur = my_cnx.cursor()
@@ -54,3 +58,6 @@ if add_my_fruit != "" and add_my_fruit != None:
     add_my_fruit+
     "')")
     streamlit.write('Thanks for adding ', add_my_fruit)
+
+# This will not work
+my_cur.execute("insert into from fruit_load_list values ()")
