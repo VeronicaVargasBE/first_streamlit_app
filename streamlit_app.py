@@ -1,3 +1,4 @@
+from asyncio.windows_events import NULL
 import pandas as pd
 import requests
 import streamlit
@@ -47,11 +48,10 @@ streamlit.dataframe(my_data_row)
 
 # Allow the end user to add a fruit to the list
 add_my_fruit = streamlit.text_input('What fruit would you like to add?')
-my_cur.execute(
+
+if add_my_fruit != "" and add_my_fruit != None:
+    my_cur.execute(
     "INSERT INTO fruit_load_list(FRUIT_NAME) VALUES ('"+
     add_my_fruit+
     "')")
-# my_data_row2 = my_cur.fetchall()
-# streamlit.dataframe(my_data_row2)
-if add_my_fruit != "":
     streamlit.write('Thanks for adding ', add_my_fruit)
